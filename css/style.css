@@ -1,0 +1,15 @@
+/* **************************************
+
+            Global Config
+
+ ***************************************/
+body::-webkit-scrollbar, body::-moz-viewport-scroll {
+    display: none; /*hide scrollbar in chrome*/
+}
+
+body {
+    background-color: #444; /*#2b542c;/*#3c763d;/*#1b363a;*/
+    color: whitesmoke !important;
+    padding-top: 80px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

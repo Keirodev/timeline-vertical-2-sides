@@ -1,0 +1,147 @@
+/*
+    @keirodev
+    Timeline.css
+*/
+
+#timeline {
+    padding-top: 60px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+#mainline {
+    margin-top: -20px;
+    z-index: 50;
+    background-color: #0f0f0f;
+    width: 150px;
+    border-radius: 20px 20px 0px 50px;
+    opacity: 0.4;
+    text-align: center;
+    position: relative;
+}
+
+/* create the arrow on the top of mainline */
+#mainline:after{
+    bottom: 100%;
+    left: 50%;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border: 50px solid rgba(0, 0, 0, 0);
+    border-bottom-color: #0f0f0f;
+    margin-left: -50px;
+}
+
+#leftline, #rightline {
+    z-index: 10;
+    width: 50%;
+    position: relative;
+}
+
+#leftline {
+    margin-right: -20px;
+}
+
+#rightline {
+    margin-left: -20px;
+}
+
+.activity {
+    position: absolute;
+
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+/*closer from the top, avoid extra spaces*/
+.content-title {
+    margin-top:5px;
+}
+
+.legend {
+    position: fixed;
+    top: 50px;
+    left:50px;
+    color: #0f0f0f;
+    opacity: 0.8;
+    z-index: 999;
+
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-align-content: space-between;
+    align-content: space-between;
+}
+
+.legend > p {
+    margin-left: 10px;
+    padding: 2px 2px 2px 2px;
+    margin-bottom: 0px;
+    min-width: 100px;
+    font-weight: 800;
+}
+
+.legend > p:first-letter, .activity p:first-letter {
+    text-transform: uppercase;
+}
+
+/*
+    Effect Scroll Timeline (from animate.css)
+*/
+
+.is-hidden {
+    visibility: hidden;
+}
+
+.animate {
+    visibility: visible;
+    -webkit-animation: fadeInUp 0.7s;
+    -moz-animation: fadeInUp 0.7s;
+    animation: fadeInUp 0.7s;
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
