@@ -2,6 +2,7 @@
 
 ------------
 >Vertical timeline with 2 sides.
+[Live Demo Here](http://keiro.ovh/github/timeline-vertical-2-sides/timeline.html)
 
 I was looking for a vertical timeline mainly for creating my resume online. It appears doesn't really exists like I would. Thus was born this project.
 I share it as a version 1.0. Feel free to improve with PR.

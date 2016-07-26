@@ -38,9 +38,17 @@ class Timeline {
         this.mainline = $('#mainline');
         this.baseDate = new Date(); //baseline is today
         this.createCategoriesCss();
+
+        this.locale = "en-EN";
+        this.translate = {
+            year:'year',
+            years:'years',
+            month:'month',
+            months:'months',
+            to:'to'
+        }
         // createCss base height for a year
         Timeline.createCssClass('.annee', 'height: ' + this.pixelByYear + 'px;font-size: 2em;background: url(\'img/arrow-double.svg\') no-repeat center;background-size: contain;');
-
     }
 
     getCorrectScale(height) {
@@ -136,7 +144,7 @@ class Timeline {
         let dayUntilPreviousYear = this.dateDiff(new Date(this.baseDate.getFullYear(), 0, 1), this.baseDate);
 
         let options = {day: "numeric", month: "short"};
-        let todayToString = new Date().toLocaleString('en-EN', options);
+        let todayToString = new Date().toLocaleString(this.locale, options);
 
         //create years on mainline
         let newelement = document.createElement('div');
@@ -220,7 +228,7 @@ class Timeline {
 
         // Activity Title
         let newContentTitle = document.createElement('h3');
-        $(newContentTitle).addClass('content-title color-' + category).html(activity.title + ' | ' + Timeline.datePeriodToString(diffPeriode));
+        $(newContentTitle).addClass('content-title color-' + category).html(activity.title + ' | ' + this.datePeriodToString(diffPeriode));
 
 
         //Imbricate html elements
@@ -242,10 +250,10 @@ class Timeline {
         if (this.shouldDisplayDate) {
             // Activity Date
             let options = {year: "numeric", month: "long"};
-            let debut = duration.start.toLocaleString('en-EN', options);
-            let fin = duration.end.toLocaleString('en-EN', options);
+            let debut = duration.start.toLocaleString(this.locale, options);
+            let fin = duration.end.toLocaleString(this.locale, options);
             let newContentDate = document.createElement('p');
-            $(newContentDate).addClass('content-date').html(debut + ' to ' + fin);
+            $(newContentDate).addClass('content-date').html(debut + ' '+ this.translate.to +' ' + fin);
             $(newcontent).append(newContentDate);
         }
 
@@ -347,7 +355,7 @@ class Timeline {
     }
 
     //return period format into string as "x years y months"
-    static datePeriodToString(datePeriod) {
+    datePeriodToString(datePeriod) {
         let delay = '';
         let months = datePeriod.month;
 
@@ -363,11 +371,12 @@ class Timeline {
 
             //add years if sup to 0
             if (datePeriod.year > 0) {
-                delay += (datePeriod.year == 1) ? '1 an ' : datePeriod.year + ' ans ';
+                delay += (datePeriod.year == 1) ? '1 ' + this.translate.year + ' ' : datePeriod.year + ' ' + this.translate.years + ' ';
             }
 
+            console.info(this.translate);
             //add months if sup to 0
-            delay += (months != 0) ? months + ' mois' : '';
+            delay += (months != 0) ? months + ' ' + this.translate.months : '';
         }
 
         return delay;
