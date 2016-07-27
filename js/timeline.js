@@ -43,18 +43,41 @@ class Timeline {
         Timeline.createCssClass('.annee', 'height: ' + this.pixelByYear + 'px;font-size: 2em;background: url(\'img/arrow-double.svg\') no-repeat center;background-size: contain;');
     }
 
+    // trick to define constant of the class
     static CONSTANTS() {
 
-        return {
-            LOCALE: "en-EN",
-            TRANSLATE: {
-                YEAR: 'year',
-                YEARS: 'years',
-                MONTH: 'month',
-                MONTHS: 'months',
-                TO: 'to'
-            }
-        };
+        let language = navigator.languages && navigator.languages[0] || // Chrome / Firefox
+            navigator.language ||   // All browsers
+            navigator.userLanguage; // IE <= 10
+
+        switch (language) {
+            case 'fr-FR':
+                return {
+                    LOCALE: language,
+                    TRANSLATE: {
+                        YEAR: 'an',
+                        YEARS: 'ans',
+                        MONTH: 'mois',
+                        MONTHS: 'mois',
+                        TO: 'à'
+                    }
+                };
+                break;
+
+            default:
+                return {
+                    LOCALE: language,
+                    TRANSLATE: {
+                        YEAR: 'year',
+                        YEARS: 'years',
+                        MONTH: 'month',
+                        MONTHS: 'months',
+                        TO: 'to'
+                    }
+                };
+        }
+
+
     }
 
     getCorrectScale(height) {
@@ -378,7 +401,6 @@ class Timeline {
                 delay += (datePeriod.year == 1) ? '1 ' + Timeline.CONSTANTS().TRANSLATE.YEAR + ' ' : datePeriod.year + ' ' + Timeline.CONSTANTS().TRANSLATE.YEARS + ' ';
             }
 
-            console.info(this.translate);
             //add months if sup to 0
             if (datePeriod.month > 0) {
                 delay += (datePeriod.month == 1) ? '1 ' + Timeline.CONSTANTS().TRANSLATE.MONTH + ' ' : datePeriod.month + ' ' + Timeline.CONSTANTS().TRANSLATE.MONTHS + ' ';
