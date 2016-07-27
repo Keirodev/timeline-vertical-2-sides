@@ -18,7 +18,6 @@ class Timeline {
         this.mainline = $('#mainline');
         this.baseDate = new Date(); //baseline is today
         this.createCategoriesCss();
-
         // createCss base height for a year
         Timeline.createCssClass('.annee', 'height: ' + this.pixelByYear + 'px;font-size: 2em;background: url(\'img/arrow-double.svg\') no-repeat center;background-size: contain;');
     }
@@ -56,8 +55,6 @@ class Timeline {
                     }
                 };
         }
-
-
     }
 
     getCorrectScale(height) {
