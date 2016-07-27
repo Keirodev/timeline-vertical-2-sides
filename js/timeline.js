@@ -1,26 +1,6 @@
-// Execute JS when DOM est loaded
-$(function () {
-    //Care to this JS bullshit: months are from 0 to 11
-
-    let tl = new Timeline(365, true, true);
-    /* Used to set your own categories
-    tl.setCategories([
-        {name:'work',color:'yellowgreen', displayOrderInLegend: 1},
-        {name:'studies',color:'dodgerblue', displayOrderInLegend: 2},
-        {name:'other',color:'orchid', displayOrderInLegend: 3}
-    ]);
-    */
-    tl.addActivities([
-         ['left',   'work',      {start:new Date(2016,0,2), end:new Date(2016,5,2)},  {title:'Employee', description:'Somewhere, somehow'}],
-         ['left',   'work',      {start:new Date(2015,0,1), end:new Date(2015,10,1)}, {title:'God', description:'in the sky'}],
-         ['right',  'work',      {start:new Date(2014,6,1), end:new Date(2015,0,1)},  {title:'New Job on the Right', description:'Awesome layer mate'}],
-         ['right',  'studies',   {start:new Date(2015,5,1), end:new Date(2016,0,1)},  {title:'Bachelor Php', description:'Great Studies !'}],
-         ['right',  'studies',   {start:new Date(2016,5,1), end:new Date()},          {title:'Bachelor Informatic', description:'Somewhere in Peru'}],
-         ['right',  'other',     {start:new Date(2015,1,1), end:new Date(2015,4,1)},  {title:'Python Dev', description:'Somewhere in Switzerland'}]
-     ]);
-});
-
-
+/*
+    @Author : Keirodev https://github.com/Keirodev
+*/
 class Timeline {
 
     constructor(defaultPixelByYear = 365, shouldDisplayDate = true, shouldDisplayDescription = true) {
@@ -38,17 +18,43 @@ class Timeline {
         this.mainline = $('#mainline');
         this.baseDate = new Date(); //baseline is today
         this.createCategoriesCss();
-
-        this.locale = "en-EN";
-        this.translate = {
-            year:'year',
-            years:'years',
-            month:'month',
-            months:'months',
-            to:'to'
-        }
         // createCss base height for a year
         Timeline.createCssClass('.annee', 'height: ' + this.pixelByYear + 'px;font-size: 2em;background: url(\'img/arrow-double.svg\') no-repeat center;background-size: contain;');
+    }
+
+    // trick to define constant of the class
+    static CONSTANTS() {
+
+        let language = navigator.languages && navigator.languages[0] || // Chrome / Firefox
+            navigator.language ||   // All browsers
+            navigator.userLanguage; // IE <= 10
+
+        switch (language) {
+            case 'fr-FR':
+                return {
+                    LOCALE: language,
+                    TRANSLATE: {
+                        YEAR: 'an',
+                        YEARS: 'ans',
+                        MONTH: 'mois',
+                        MONTHS: 'mois',
+                        TO: 'à'
+                    }
+                };
+                break;
+
+            default:
+                return {
+                    LOCALE: language,
+                    TRANSLATE: {
+                        YEAR: 'year',
+                        YEARS: 'years',
+                        MONTH: 'month',
+                        MONTHS: 'months',
+                        TO: 'to'
+                    }
+                };
+        }
     }
 
     getCorrectScale(height) {
@@ -144,7 +150,7 @@ class Timeline {
         let dayUntilPreviousYear = this.dateDiff(new Date(this.baseDate.getFullYear(), 0, 1), this.baseDate);
 
         let options = {day: "numeric", month: "short"};
-        let todayToString = new Date().toLocaleString(this.locale, options);
+        let todayToString = new Date().toLocaleString(Timeline.CONSTANTS().LOCALE, options);
 
         //create years on mainline
         let newelement = document.createElement('div');
@@ -250,10 +256,10 @@ class Timeline {
         if (this.shouldDisplayDate) {
             // Activity Date
             let options = {year: "numeric", month: "long"};
-            let debut = duration.start.toLocaleString(this.locale, options);
-            let fin = duration.end.toLocaleString(this.locale, options);
+            let debut = duration.start.toLocaleString(Timeline.CONSTANTS().LOCALE, options);
+            let fin = duration.end.toLocaleString(Timeline.CONSTANTS().LOCALE, options);
             let newContentDate = document.createElement('p');
-            $(newContentDate).addClass('content-date').html(debut + ' '+ this.translate.to +' ' + fin);
+            $(newContentDate).addClass('content-date').html(debut + ' '+ Timeline.CONSTANTS().TRANSLATE.TO +' ' + fin);
             $(newcontent).append(newContentDate);
         }
 
@@ -357,8 +363,6 @@ class Timeline {
     //return period format into string as "x years y months"
     datePeriodToString(datePeriod) {
         let delay = '';
-        let months = datePeriod.month;
-
 
         //special case for long time
         if (datePeriod.year > 2 && datePeriod.month >= 6) {
@@ -371,12 +375,13 @@ class Timeline {
 
             //add years if sup to 0
             if (datePeriod.year > 0) {
-                delay += (datePeriod.year == 1) ? '1 ' + this.translate.year + ' ' : datePeriod.year + ' ' + this.translate.years + ' ';
+                delay += (datePeriod.year == 1) ? '1 ' + Timeline.CONSTANTS().TRANSLATE.YEAR + ' ' : datePeriod.year + ' ' + Timeline.CONSTANTS().TRANSLATE.YEARS + ' ';
             }
 
-            console.info(this.translate);
             //add months if sup to 0
-            delay += (months != 0) ? months + ' ' + this.translate.months : '';
+            if (datePeriod.month > 0) {
+                delay += (datePeriod.month == 1) ? '1 ' + Timeline.CONSTANTS().TRANSLATE.MONTH + ' ' : datePeriod.month + ' ' + Timeline.CONSTANTS().TRANSLATE.MONTHS + ' ';
+            }
         }
 
         return delay;

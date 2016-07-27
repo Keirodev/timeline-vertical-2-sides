@@ -1,13 +1,13 @@
 # README #
 
 ------------
->Vertical timeline with 2 sides.
-[Live Demo Here](http://keiro.ovh/github/timeline-vertical-2-sides/timeline.html)
+###Vertical timeline with 2 sides.###
+[Live Demo Here](https://keirodev.github.io/timeline-vertical-2-sides/demo/timeline.html)
 
 I was looking for a vertical timeline mainly for creating my resume online. It appears doesn't really exists like I would. Thus was born this project.
 I share it as a version 1.0. Feel free to improve with PR.
 
-**JS in ECMA6**  
+**JS in ES6**  
 See class 
 ```
 Timeline(defaultPixelByYear = 365, shouldDisplayDate = true, shouldDisplayDescription = true);
@@ -41,10 +41,8 @@ tl.setCategories([
 
 By default, 3 categories are created : *work*, *studies* and *other*.
 
-
-**TODO**
-- Dynamic date locale (parameter of `date.toLocaleString` is currently harcoded 'en-EN')
-- ...
+**Dependencies**
+- JQuery 2.*
 
 ### Who manage this project ? ###
-* Keiro
+* Keirodev
