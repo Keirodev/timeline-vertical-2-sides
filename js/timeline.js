@@ -1,6 +1,3 @@
-/*
-    @Author : Keirodev https://github.com/Keirodev
-*/
 class Timeline {
 
     constructor(defaultPixelByYear = 365, shouldDisplayDate = true, shouldDisplayDescription = true) {
@@ -190,11 +187,11 @@ class Timeline {
             this.createCategoriesCss([{name: category, color:defaultCategoryColor}]);
         }
         // line can be left or right.
-        let lineToUse = (line == 'left') ? $('#leftline') : $('#rightline');
+        let lineToUse = (line === 'left') ? $('#leftline') : $('#rightline');
 
         // use for margin to opposite side
-        let invertLine = (line == 'left') ? 'right' : 'left';
-        let cssBorderRadius = (line == 'left') ? '10px 0px' : '0px 10px';
+        let invertLine = (line === 'left') ? 'right' : 'left';
+        let cssBorderRadius = (line === 'left') ? '10px 0px' : '0px 10px';
 
         //calculate difference between today and the date filled
         let diffDayBase = this.dateDiff(duration.end, this.baseDate);
@@ -241,7 +238,7 @@ class Timeline {
         lineToUse.append(newactivity);
 
         // order is important due to css flex
-        if (line == 'left') {
+        if (line === 'left') {
             $(newactivity).append(newcontent);
             $(newactivity).append(newelement);
         } else {
@@ -431,7 +428,5 @@ class Timeline {
             }
         });
     }
-
-
 }
 
