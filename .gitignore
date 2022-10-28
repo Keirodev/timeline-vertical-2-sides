@@ -3,3 +3,5 @@
 
 # phpstorm
 .idea
+
+node_modules
