@@ -1,107 +1,26 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Timeline-vertical-2-sides by Keirodev</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/Keirodev/timeline-vertical-2-sides">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/Keirodev/timeline-vertical-2-sides/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/Keirodev/timeline-vertical-2-sides/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
-
-    <div class="wrapper">
-
-      <section>
-        <div id="title">
-          <h1>Timeline-vertical-2-sides</h1>
-          <p>Vertical Timeline with mainline and activities on 2 sides of it.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/Keirodev">Keirodev</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/timeline.css">
+    <title>Timeline Resume / CV</title>
+</head>
+<body>
+    <div class="container">
+        <div id="content">
+            <section id="timeline">
+                <div id="leftline"></div>
+                <div id="mainline"></div>
+                <div id="rightline"></div>
+            </section>
         </div>
-
-        <h1>
-<a id="readme" class="anchor" href="#readme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>README</h1>
-
-<hr>
-
-<blockquote>
-<p>Vertical timeline with 2 sides.
-<a href="https://keirodev.github.io/timeline-vertical-2-sides/demo/timeline.html">Live Demo Here</a></p>
-</blockquote>
-
-<p>I was looking for a vertical timeline mainly for creating my resume online. It appears doesn't really exists like I would. Thus was born this project.
-I share it as a version 1.0. Feel free to improve with PR.</p>
-
-<p><strong>JS in ECMA6</strong><br>
-See class </p>
-
-<pre><code>Timeline(defaultPixelByYear = 365, shouldDisplayDate = true, shouldDisplayDescription = true);
-</code></pre>
-
-<p><strong>What it does</strong></p>
-
-<p>Vertical timeline with a mainline containing years. On each side of it, you place your data.
-The top of mainline is TODAY. The bottom is the oldest date you created in your activities.
-You can create your own categories, choose their associate colour and the order you want to display its in the legend.</p>
-
-<p><strong>Concrete use</strong></p>
-
-<pre><code>let tl = new Timeline(365, true, true);
-tl.addActivities([
-         ['left',   'work',      {start:new Date(2016,0,2), end:new Date(2016,5,2)},  {title:'Something', description:'Somewhere, somehow'}],
-         ['right',  'studies',   {start:new Date(2016,5,1), end:new Date()},          {title:'Bachelor Informatic', description:'Somewhere in Peru'}],
-         ['right',  'other',     {start:new Date(2015,1,1), end:new Date(2015,4,1)},  {title:'Python Dev', description:'Somewhere in Switzerland'}]
-     ]);
-</code></pre>
-
-<p>That's the minimum.
-In addition, you can set your own categories before adding activities with :</p>
-
-<pre><code>tl.setCategories([
-        {name:'work',color:'yellowgreen', displayOrderInLegend: 1},
-        {name:'studies',color:'dodgerblue', displayOrderInLegend: 2},
-        {name:'other',color:'orchid', displayOrderInLegend: 3}
-    ]);
-</code></pre>
-
-<p>By default, 3 categories are created : <em>work</em>, <em>studies</em> and <em>other</em>.</p>
-
-<p><strong>TODO</strong></p>
-
-<ul>
-<li>Dynamic date locale (parameter of <code>date.toLocaleString</code> is currently harcoded 'en-EN')</li>
-<li>...</li>
-</ul>
-
-<h3>
-<a id="who-manage-this-project-" class="anchor" href="#who-manage-this-project-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Who manage this project ?</h3>
-
-<ul>
-<li>Keiro</li>
-</ul>
-      </section>
-
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/yourscript.js"></script>
+</body>
 </html>
